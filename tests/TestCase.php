@@ -134,4 +134,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
         return $result;
     }
+
+    protected function tearDownAfterClass(): void
+    {
+        parent::tearDownAfterClass();
+    }
 }
