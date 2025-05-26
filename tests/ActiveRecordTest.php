@@ -539,10 +539,10 @@ class ActiveRecordTest extends TestCase
         $script = $lua->buildOne($query);
 
         foreach($expectedStrings as $string) {
-            $this->assertContains($string, $script);
+            $this->assertStringContainsString($string, $script);
         }
         foreach($unexpectedStrings as $string) {
-            $this->assertNotContains($string, $script);
+            $this->assertStringNotContainsString($string, $script);
         }
     }
 
