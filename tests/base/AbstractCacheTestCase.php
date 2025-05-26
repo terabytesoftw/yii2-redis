@@ -13,7 +13,7 @@ namespace yiiunit\extensions\redis\base;
  */
 function time()
 {
-    return \yiiunit\extensions\redis\base\CacheTestCase::$time ?: \time();
+    return \yiiunit\extensions\redis\base\AbstractCacheTestCase::$time ?: \time();
 }
 
 /**
@@ -23,7 +23,7 @@ function time()
  */
 function microtime($float = false)
 {
-    return \yiiunit\extensions\redis\base\CacheTestCase::$microtime ?: \microtime($float);
+    return \yiiunit\extensions\redis\base\AbstractCacheTestCase::$microtime ?: \microtime($float);
 }
 
 namespace yiiunit\extensions\redis\base;
@@ -35,7 +35,7 @@ use yiiunit\extensions\redis\TestCase;
 /**
  * Base class for testing cache backends.
  */
-abstract class CacheTestCase extends TestCase
+abstract class AbstractCacheTestCase extends TestCase
 {
     /**
      * @var int virtual time to be returned by mocked time() function.
