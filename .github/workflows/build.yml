@@ -24,6 +24,8 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
+
       matrix:
         os:
           - ubuntu-latest
@@ -39,14 +41,16 @@ jobs:
           - 7
           - 8
 
+    services:
+      redis:
+        image: redis:${{ matrix.redis }}
+        ports:
+          - 6379:6379
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=5
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Start Redis v4
-        uses: superchargejs/redis-github-action@1.1.0
-        with:
-          redis-version: ${{ matrix.redis }}
 
       - name: Install PHP with extensions
         uses: shivammathur/setup-php@v2
